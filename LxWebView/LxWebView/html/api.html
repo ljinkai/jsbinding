@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>5miles-native api</title>
+    <meta charset="utf-8"/>
+    <meta name="keywords"
+          content="5miles,5milesapp,5 miles,five miles,auction,buy,sell">
+    <meta name="description"
+          content="The 5miles app is a fun, free and easy mobile marketplace to buy">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <style>
+        .title {margin-left: 4%;height: 50px;line-height: 50px;}
+        ul{width: 100%;margin: 0px;padding: 0px;}
+        ul li {list-style: none;width: 92%;margin: 10px 4%;text-align: center;}
+        ul li a {width: 100%;}
+        .tip {color:orangered;text-align:left;height: 26px;line-height: 26px;}
+        .item {height: 46px;line-height: 46px;border: 1px #808080 solid;}
+    </style>
+</head>
+<body id="serviceLayout">
+<div class="title">For testing native API :)</div>
+<ul>
+    <li class="tip">Toast-提示信息</li>
+    <li class="item" onclick="toast()">
+        弹出提示信息 3000毫秒后消失ss
+    </li>
+    <li class="tip">Loading-加载中组件</li>
+    <li class="item" onclick="loadShow()">
+        显示
+    </li>
+    <li class="item" onclick="loadHide()">
+        隐藏
+    </li>
+    <li class="tip">WinOpen-调用打开新的webview</li>
+    <li class="item" onclick="winOpen()">
+        打开新窗口
+    </li>
+    <li class="tip">WinClose-关闭当前的窗口</li>
+    <li class="item" onclick="winClose()">
+        关闭窗口
+    </li>
+    <li class="tip">WinRefresh-刷新当前webview</li>
+    <li class="item" onclick="winRefresh()">
+        刷新
+    </li>
+    <li class="tip">PullDown-下拉刷新动画</li>
+    <li class="item" onclick="pullOpen()">
+        启用下拉刷新
+    </li>
+    <li class="item" onclick="pullClose()">
+        禁用下拉刷新
+    </li>
+    <li class="item" onclick="pullAndBack()">
+        带回调的下拉刷新
+    </li>
+    <li class="item" onclick="pullPackUp()">
+        下拉收起
+    </li>
+</ul>
+<iframe id="openFrame"></iframe>
+<script>
+    var iframe = document.getElementById('openFrame');
+    function pullBack() {
+        alert("回调成功");
+    }
+
+    /**function all**/
+    function toast() {
+        var url = "ui_toast://type=def&position=middle&time=3000";
+        iframe.setAttribute('src', url);
+    }
+    function loadShow() {
+        var url = "ui_loading://type=def&flag=show";
+        iframe.setAttribute('src', url);
+
+    }
+    function loadHide() {
+        var url = "ui_loading://type=def&flag=hide";
+        iframe.setAttribute('src', url);
+
+    }
+    function winOpen() {
+        var url = "win_open://url=http://www.baidu.com&target=_blank&title=xxx";
+        iframe.setAttribute('src', url);
+
+    }
+    function winClose() {
+        var url = "win_close://";
+        iframe.setAttribute('src', url);
+
+    }
+    function winRefresh() {
+        var url = "win_refresh://";
+        iframe.setAttribute('src', url);
+
+    }
+    function pullOpen() {
+        var url = "ui_pull://type=def&limit=false";
+        iframe.setAttribute('src', url);
+
+    }
+    function pullClose() {
+        var url = "ui_pull://type=def&limit=true";
+        iframe.setAttribute('src', url);
+
+    }
+    function pullAndBack() {
+        var url = "ui_pull://type=def&limit=false&callback=pullBack()";
+        iframe.setAttribute('src', url);
+
+    }
+    function pullPackUp() {
+        var url = "ui_pull://type=def&limit=false&state=hide";
+        iframe.setAttribute('src', url);
+
+    }
+</script>
+
+</body>
+</html>
+
